@@ -1,20 +1,24 @@
 {
   "name": "File Store",
-  "description": "Telegram bot to store your telegram files",
+  "description": "Telegram bot share file",
   "keywords": [
     "telegram",
     "best",
     "Store",
     "Files"
   ],
-  "logo": "https://telegra.ph/file/bdd3352951be090a56590.jpg",
-  "success_url": "https://telegram.dog/filestore_Nsbot",
-  "website": "https://github.com/Ns-Bots/TG-File-Store",
-  "repository": "https://github.com/Ns-Bots/TG-File-Store",
+  "logo": "https://github.com/N93NT0T/tesaher",
+  "success_url": "https://github.com/N93NT0T/tesaher",
+  "website": "https://github.com/N93NT0T/tesaher",
+  "repository": "https://github.com/N93NT0T/tesaher",
   "env": {
     "WEBHOOK": {
       "description": "Setting this to ANYTHING will enable webhooks when in env mode",
       "value": "ANYTHING"
+    },
+      "DATABASE_URI": {
+      "description": "Your bot token, as a .",
+      "value": ""
     },
     "BOT_TOKEN": {
       "description": "Your bot token, as a string.",

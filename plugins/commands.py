@@ -20,7 +20,7 @@ BATCH = []
 @Client.on_message(filters.command('start') & filters.incoming & filters.private)
 async def start(c, m, cb=False):
     if not cb:
-        send_msg = await m.reply_text("**Processing...**", quote=True)
+        send_msg = await m.reply_text("", quote=True)
 
     owner = await c.get_users(int(OWNER_ID))
     owner_username = owner.username if owner.username else 'Ns_bot_updates'
@@ -90,7 +90,7 @@ async def start(c, m, cb=False):
 
 
         await send_msg.delete()
-        await msg.copy(m.from_user.id, caption=caption)
+        await msg.copy(m.from_user.id)
 
 
     else: # sending start message

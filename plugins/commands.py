@@ -99,13 +99,8 @@ async def start(c, m, cb=False):
                 caption += f"__👁 Members Count:__ {channel.members_count}\n\n" if channel.members_count else ""
             else:
                 user = await c.get_users(int(chat_id)) 
-                caption += "**--Uploader Details:--**\n\n" 
-                caption += f"__🦚 j Name:__ `{user.first_name}`\n\n" 
-                caption += f"__🐧 Last Name:__ `{user.last_name}`\n\n" if user.last_name else "" 
-                caption += f"__👁 User Name:__ @{user.username}\n\n" if user.username else "" 
-                caption += f"__👤 User Id:__ `{user.id}`\n\n" 
-                caption += f"__💬 DC ID:__ {user.dc_id}\n\n" if user.dc_id else ""
-
+                caption += "**--Terus support channel mimin, dan nantikan update berikutnya... **\n\n" 
+                
 
         await send_msg.delete()
         await msg.copy(m.from_user.id, caption=caption)

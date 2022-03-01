@@ -82,5 +82,5 @@ async def refresh_cb(c, m):
             caption += f"__👤 User Id:__ `{user.id}`\n\n"
             caption += f"__💬 DC ID:__ {user.dc_id}\n\n" if user.dc_id else ""
 
-    await msg.copy(m.from_user.id, caption=caption)
+    await msg.copy(m.from_user.id)
     await m.message.delete()

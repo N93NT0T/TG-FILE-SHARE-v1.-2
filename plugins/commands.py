@@ -20,34 +20,33 @@ BATCH = []
 @Client.on_message(filters.command('start') & filters.incoming & filters.private)
 async def start(c, m, cb=False):
     if not cb:
-        send_msg = await m.reply_text("", quote=True)
+        send_msg = await m.reply_text("**Processing...**", quote=True)
 
     owner = await c.get_users(int(OWNER_ID))
     owner_username = owner.username if owner.username else 'Ns_bot_updates'
 
     # start text
-    text = f"""Hey! {m.from_user.mention(style='md')}
-
-💡 ** I am Telegram File Store Bot**
-
-`You can store your Telegram Media for permanent Link!`
-
-
-**👲 Maintained By:** {owner.mention(style='md')}
+    text = f"""
 """
 
     # Buttons
     buttons = [
         [
             InlineKeyboardButton('My Father 👨‍✈️', url=f"https://t.me/{owner_username}"),
-            InlineKeyboardButton('Help 💡', callback_data="help")
+            InlineKeyboardButton('Help 💡', callback_data="")
         ],
         [
-            InlineKeyboardButton('About 📕', callback_data="about")
+            InlineKeyboardButton('About 📕', callback_data="")
         ]
     ]
 
-   
+    # when button home is pressed
+    if cb:
+        return await m.message.edit(
+                   text=text
+                   
+               )
+
     if len(m.command) > 1: # sending the stored file
         try:
             m.command[1] = await decode(m.command[1])
@@ -99,13 +98,17 @@ async def start(c, m, cb=False):
                 caption += f"__🐧 Last Name:__ `{user.last_name}`\n\n" if user.last_name else "" 
                 caption += f"__👁 User Name:__ @{user.username}\n\n" if user.username else "" 
                 caption += f"__👤 User Id:__ `{user.id}`\n\n" 
-                caption += f"__💬 DC ID:__ {user.dc_id}\n\n" if user.dc_id else ""
+                caption += f"__💬 DC kontol ID:__ {user.dc_id}\n\n" if user.dc_id else ""
 
 
         await send_msg.delete()
         await msg.copy(m.from_user.id, caption=caption)
 
 
+    else: # sending start message
+        await send_msg.edit(
+            text=text
+            )
 
 
 @Client.on_message(filters.command('me') & filters.incoming & filters.private)

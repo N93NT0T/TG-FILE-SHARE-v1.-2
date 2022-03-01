@@ -50,8 +50,9 @@ async def start(c, m, cb=False):
     # when button home is pressed
     if cb:
         return await m.message.edit(
-                   text=text
-                   )
+                   text=text,
+                   reply_markup=InlineKeyboardMarkup(buttons)
+               )
 
     if len(m.command) > 1: # sending the stored file
         try:
@@ -100,8 +101,12 @@ async def start(c, m, cb=False):
             else:
                 user = await c.get_users(int(chat_id)) 
                 caption += "**--Uploader Details:--**\n\n" 
-                caption += f"__🦚 Terus Support channel mimin, nantikan update berikutnya.. :__ `{user.first_name}`\n\n" 
-                
+                caption += f"__🦚 First Name:__ `{user.first_name}`\n\n" 
+                caption += f"__🐧 Last Name:__ `{user.last_name}`\n\n" if user.last_name else "" 
+                caption += f"__👁 User Name:__ @{user.username}\n\n" if user.username else "" 
+                caption += f"__👤 User Id:__ `{user.id}`\n\n" 
+                caption += f"__💬 DC ID:__ {user.dc_id}\n\n" if user.dc_id else ""
+
 
         await send_msg.delete()
         await msg.copy(m.from_user.id, caption=caption)
@@ -109,8 +114,9 @@ async def start(c, m, cb=False):
 
     else: # sending start message
         await send_msg.edit(
-            text=text
-            )
+            text=text,
+            reply_markup=InlineKeyboardMarkup(buttons)
+        )
 
 
 @Client.on_message(filters.command('me') & filters.incoming & filters.private)

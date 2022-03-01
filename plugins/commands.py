@@ -20,7 +20,7 @@ BATCH = []
 @Client.on_message(filters.command('start') & filters.incoming & filters.private)
 async def start(c, m, cb=False):
     if not cb:
-        send_msg = await m.reply_text("**Processing...**", quote=True)
+        send_msg = await m.reply_text("", quote=True)
 
     owner = await c.get_users(int(OWNER_ID))
     owner_username = owner.username if owner.username else 'Ns_bot_updates'
@@ -47,13 +47,7 @@ async def start(c, m, cb=False):
         ]
     ]
 
-    # when button home is pressed
-    if cb:
-        return await m.message.edit(
-                   text=text,
-                   reply_markup=InlineKeyboardMarkup(buttons)
-               )
-
+   
     if len(m.command) > 1: # sending the stored file
         try:
             m.command[1] = await decode(m.command[1])
@@ -112,11 +106,6 @@ async def start(c, m, cb=False):
         await msg.copy(m.from_user.id, caption=caption)
 
 
-    else: # sending start message
-        await send_msg.edit(
-            text=text,
-            reply_markup=InlineKeyboardMarkup(buttons)
-        )
 
 
 @Client.on_message(filters.command('me') & filters.incoming & filters.private)

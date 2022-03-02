@@ -27,8 +27,7 @@ async def storefile(c, m):
                 text += f"🎙 __Performer:__ `{media.performer}`\n\n" if media.performer else ""
     text += f"__✏ Caption:__ `{m.caption}`\n\n" if m.caption else ""
     text += f"__🔓 Password   :__ `{m.caption}`\n\n" if m.caption else ""
-    text = "--**🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽**--"
-        
+    
     # if databacase channel exist forwarding message to channel
     if DB_CHANNEL_ID:
         msg = await m.copy(int(DB_CHANNEL_ID))

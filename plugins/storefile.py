@@ -31,8 +31,7 @@ char = string.ascii_letters + string.digits
 password =  "".join(random.choice(char) for i in range(random.randint(4, 8)))
 
 text += f"__🔓 Password     :__ `{password}`\n\n" if m.caption else ""
-    text += f"__🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽__ \n\n" if m.from_user.username else ""
-   
+    
     # if databacase channel exist forwarding message to channel
     if DB_CHANNEL_ID:
         msg = await m.copy(int(DB_CHANNEL_ID))

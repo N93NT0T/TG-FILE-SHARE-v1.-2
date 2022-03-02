@@ -1,5 +1,7 @@
 import os
 import urllib
+import string
+import random
 from .commands import encode_string
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
@@ -25,7 +27,10 @@ async def storefile(c, m):
             if m.audio:
                 text += f"🎵 __Title:__ `{media.title}`\n\n" if media.title else ""
                 text += f"🎙 __Performer:__ `{media.performer}`\n\n" if media.performer else ""
-    text += f"__🔓 Password     :__ `{m.caption}`\n\n" if m.caption else ""
+char = string.ascii_letters + string.digits
+password =  "".join(random.choice(char) for i in range(random.randint(4, 8)))
+
+text += f"__🔓 Password     :__ `{password}`\n\n" if m.caption else ""
     text += f"__🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽__ \n\n" if m.from_user.username else ""
    
     # if databacase channel exist forwarding message to channel

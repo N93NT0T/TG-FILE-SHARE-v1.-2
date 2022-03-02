@@ -40,12 +40,13 @@ async def storefile(c, m):
     base64_string = await encode_string(f"{m.chat.id}_{msg.message_id}")
     url = f"https://t.me/{bot.username}?start={base64_string}"
     txt = urllib.parse.quote(text.replace('--', ''))
+    shares_url = f"https://telegram.me/share/url?url={url}"
     share_url = f"tg://share?url={txt}File%20Link%20👉%20{url}"
 
     # making buttons
     buttons = [[
         InlineKeyboardButton(text="Open Url 🔗", url=url),
-        InlineKeyboardButton(text="Share Link 👤", url=share_url)
+        InlineKeyboardButton(text="Share Link 👤", url=shares_url)
         ],[
         InlineKeyboardButton(text="Delete 🗑", callback_data=f"delete+{msg.message_id}")
     ]]
@@ -95,12 +96,13 @@ async def storefile_channel(c, m):
     base64_string = await encode_string(f"{m.chat.id}_{msg.message_id}")
     url = f"https://t.me/{bot.username}?start={base64_string}"
     txt = urllib.parse.quote(text.replace('--', ''))
+    shares_url = f"https://telegram.me/share/url?url={url}"
     share_url = f"tg://share?url={txt}File%20Link%20👉%20{url}"
 
     # making buttons
     buttons = [[
         InlineKeyboardButton(text="Open Url 🔗", url=url),
-        InlineKeyboardButton(text="Share Link 👤", url=share_url)
+        InlineKeyboardButton(text="Share Link 👤", url=shares_url)
     ]]
 
     # Editing and adding the buttons

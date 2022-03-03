@@ -94,7 +94,7 @@ async def start(c, m, cb=False):
                 caption += f"__👁 Members Count:__ {channel.members_count}\n\n" if channel.members_count else ""
             else:
                 user = await c.get_users(int(chat_id)) 
-                caption += "**--Terus support channel mimin, dan nantikan update berikutnya... @enaksat**\n\n" 
+                caption += "**--📌Tanya mimin\n📌 Request\n📌 Report Link rusak\n\n👇👇👇👇👇\n@nginpho_bot\n\n\nTerus dukung channel ini agar mimin semangat update 👌 ©@enaksat**\n\n" 
                 
 
         await send_msg.delete()

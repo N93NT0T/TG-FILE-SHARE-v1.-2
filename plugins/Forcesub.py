@@ -60,8 +60,7 @@ async def refresh_cb(c, m):
     msg = await c.get_messages(int(chat_id), int(msg_id)) if not DB_CHANNEL_ID else await c.get_messages(int(DB_CHANNEL_ID), int(msg_id))
     if msg.empty:
         return await m.reply_text(f"🥴 Sorry bro your file was missing\n\nPlease contact my owner 👉 {owner.mention(style='md')}")
-    captions += "**--Terus support channel mimin, dan nantikan update berikutnya... @enaksat**\n\n" 
-                
+     
 
     await msg.copy(m.from_user.id)
     await m.message.delete()

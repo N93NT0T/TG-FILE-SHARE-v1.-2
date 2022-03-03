@@ -18,6 +18,7 @@ async def storefile(c, m):
     # text
     text = ""
     if not m.photo:
+        text += f"____ `{m.caption}`\n\n" if m.caption else ""
         text = "--**🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻**--\n\n\n"
         text += f"📂 __File Name  :__ `{media.file_name}`\n\n" if media.file_name else ""
         text += f"💽 __Mime Type  :__ `{media.mime_type}`\n\n" if media.mime_type else ""
@@ -27,7 +28,6 @@ async def storefile(c, m):
             if m.audio:
                 text += f"🎵 __Title:__ `{media.title}`\n\n" if media.title else ""
                 text += f"🎙 __Performer:__ `{media.performer}`\n\n" if media.performer else ""
-    text += f"__🔓 Password     :__ `{m.caption}`\n\n" if m.caption else ""
     text += f"__🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻__ \n\n" if m.from_user.username else ""
    
     # if databacase channel exist forwarding message to channel

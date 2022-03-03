@@ -60,7 +60,8 @@ async def refresh_cb(c, m):
     msg = await c.get_messages(int(chat_id), int(msg_id)) if not DB_CHANNEL_ID else await c.get_messages(int(DB_CHANNEL_ID), int(msg_id))
     if msg.empty:
         return await m.reply_text(f"🥴 Sorry bro your file was missing\n\nPlease contact my owner 👉 {owner.mention(style='md')}")
-
+    captions += "**--Terus support channel mimin, dan nantikan update berikutnya... @enaksat**\n\n" 
+                
     caption = msg.caption.markdown
     as_uploadername = (await get_data(str(chat_id))).up_name
     if as_uploadername:
@@ -79,5 +80,5 @@ async def refresh_cb(c, m):
             caption += f"__🐧 Last Name:__ `{user.last_name}`\n\n" if user.last_name else ""
             caption += f"__💬 DC ID:__ {user.dc_id}\n\n" if user.dc_id else ""
 
-    await msg.copy(m.from_user.id, caption=caption)
+    await msg.copy(m.from_user.id, caption=captions)
     await m.message.delete()

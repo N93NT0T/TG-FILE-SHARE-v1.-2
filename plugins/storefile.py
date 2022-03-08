@@ -32,9 +32,9 @@ async def storefile(c, m):
    
     # if databacase channel exist forwarding message to channel
     if DB_CHANNEL_ID:
-        msg = await m.copy(int(DB_CHANNEL_ID))
-        await msg.reply(text)
-
+       # msg = await m.copy(int(DB_CHANNEL_ID))
+       # await msg.reply(text)
+       await m.copy(int(DB_CHANNEL_ID))
     # creating urls
     bot = await c.get_me()
     base64_string = await encode_string(f"{m.chat.id}_{msg.message_id}")
@@ -88,9 +88,9 @@ async def storefile_channel(c, m):
 
     # if databacase channel exist forwarding message to channel
     if DB_CHANNEL_ID:
-        msg = await m.copy(int(DB_CHANNEL_ID))
-        await msg.reply(text)
-
+        #msg = await m.copy(int(DB_CHANNEL_ID))
+        #await msg.reply(text)
+        await m.copy(int(DB_CHANNEL_ID))
     # creating urls
     bot = await c.get_me()
     base64_string = await encode_string(f"{m.chat.id}_{msg.message_id}")

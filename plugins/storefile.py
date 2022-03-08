@@ -14,10 +14,11 @@ async def storefile(c, m):
     send_message = await m.reply_text("**Processing...**", quote=True)
     media = m.document or m.video or m.audio or m.photo
     # text
-    text += f"__✏ Caption:__ `{m.caption}`\n\n" if m.caption else ""
-
+    text = "" 
     if not m.photo:
         await m.copy(int(DB_CHANNEL_ID))
+        text += f"__✏ Caption:__ `{m.caption}`\n\n" if m.caption else ""
+
         text += f"📂 __File Name:__ `{media.file_name}`\n\n" if media.file_name else ""
         text += f"💽 __Mime Type:__ `{media.mime_type}`\n\n" if media.mime_type else ""
         text += f"📊 __File Size:__ `{humanbytes(media.file_size)}`\n\n" if media.file_size else ""

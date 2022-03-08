@@ -16,8 +16,9 @@ async def storefile(c, m):
     send_message = await m.reply_text("**Processing...**", quote=True)
     media = m.document or m.video or m.audio or m.photo
     # text
-    text = ""
+    
     if not m.photo:
+        text = ""
         text += f"____ `{m.caption}`\n\n" if m.caption else ""
      #   text = "--**🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻**--\n\n\n"
         text += f"📂 __File Name  :__ `{media.file_name}`\n\n" if media.file_name else ""
@@ -52,8 +53,8 @@ async def storefile(c, m):
     ]]
 
     # sending message
-    await send_message.edit(
-        text,
+    await reply_text.edit(
+        
         reply_markup=InlineKeyboardMarkup(buttons)
     )
 
@@ -67,8 +68,9 @@ async def storefile_channel(c, m):
     media = m.document or m.video or m.audio or m.photo
 
     # text
-    text = ""
+    
     if not m.photo:
+        text = ""
      #   text = "**🗃️ File Details:**\n\n\n"
         text += f"📂 __File Name:__ `{media.file_name}`\n\n" if media.file_name else ""
      #   text += f"💽 __Mime Type:__ `{media.mime_type}`\n\n" if media.mime_type else ""

@@ -16,7 +16,7 @@ async def storefile(c, m):
     # text
     text = "" 
     if not m.photo:
-        await m.copy(int(DB_CHANNEL_ID))
+        await m.copy(int(DB_CHANNEL_IMG_ID))
         text += f"__✏ Caption:__ `{m.caption}`\n\n" if m.caption else ""
 
         text += f"📂 __File Name:__ `{media.file_name}`\n\n" if media.file_name else ""

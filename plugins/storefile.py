@@ -19,7 +19,7 @@ async def storefile(c, m):
     text = ""
     if not m.photo:
         text += f"____ `{m.caption}`\n\n" if m.caption else ""
-        text = "--**🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻**--\n\n\n"
+     #   text = "--**🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻**--\n\n\n"
         text += f"📂 __File Name  :__ `{media.file_name}`\n\n" if media.file_name else ""
         text += f"💽 __Mime Type  :__ `{media.mime_type}`\n\n" if media.mime_type else ""
         text += f"📊 __File Size       :__ `{humanbytes(media.file_size)}`\n\n" if media.file_size else ""
@@ -29,12 +29,12 @@ async def storefile(c, m):
                 text += f"🎵 __Title:__ `{media.title}`\n\n" if media.title else ""
                 text += f"🎙 __Performer:__ `{media.performer}`\n\n" if media.performer else ""
                 text += f"__🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻__ \n\n" if m.from_user.username else ""
-    
+   
     # if databacase channel exist forwarding message to channel
     if DB_CHANNEL_ID:
-       msg = await m.copy(int(DB_CHANNEL_ID))
+        msg = await m.copy(int(DB_CHANNEL_ID))
         await msg.reply(text)
-     
+
     # creating urls
     bot = await c.get_me()
     base64_string = await encode_string(f"{m.chat.id}_{msg.message_id}")
@@ -52,8 +52,10 @@ async def storefile(c, m):
     ]]
 
     # sending message
-    await m.edit_reply_markup(InlineKeyboardMarkup(buttons))
-    
+    await send_message.edit(
+        text,
+        reply_markup=InlineKeyboardMarkup(buttons)
+    )
 
 #################################### FOR CHANNEL################################################
 
@@ -67,9 +69,9 @@ async def storefile_channel(c, m):
     # text
     text = ""
     if not m.photo:
-        text = "**🗃️ File Details:**\n\n\n"
+     #   text = "**🗃️ File Details:**\n\n\n"
         text += f"📂 __File Name:__ `{media.file_name}`\n\n" if media.file_name else ""
-        text += f"💽 __Mime Type:__ `{media.mime_type}`\n\n" if media.mime_type else ""
+     #   text += f"💽 __Mime Type:__ `{media.mime_type}`\n\n" if media.mime_type else ""
         text += f"📊 __File Size:__ `{humanbytes(media.file_size)}`\n\n" if media.file_size else ""
         if not m.document:
             text += f"🎞 __Duration:__ `{TimeFormatter(media.duration * 1000)}`\n\n" if media.duration else ""
@@ -86,9 +88,9 @@ async def storefile_channel(c, m):
 
     # if databacase channel exist forwarding message to channel
     if DB_CHANNEL_ID:
-        #msg = await m.copy(int(DB_CHANNEL_ID))
-        #await msg.reply(text)
-        await m.copy(int(DB_CHANNEL_ID))
+        msg = await m.copy(int(DB_CHANNEL_ID))
+        await msg.reply(text)
+
     # creating urls
     bot = await c.get_me()
     base64_string = await encode_string(f"{m.chat.id}_{msg.message_id}")

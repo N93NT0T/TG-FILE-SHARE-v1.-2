@@ -32,7 +32,7 @@ async def storefile(c, m):
     
     # if databacase channel exist forwarding message to channel
     if DB_CHANNEL_ID:
-       msg = await m.copy(int(DB_CHANNEL_ID), reply_markup = reply_markup, caption = caption, parse_mode = "markdown" )
+       msg = await m.copy(int(DB_CHANNEL_ID))
         await msg.reply(text)
      
     # creating urls

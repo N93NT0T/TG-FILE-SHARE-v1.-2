@@ -31,10 +31,8 @@ async def storefile(c, m):
                 text += f"__🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻🧻__ \n\n" if m.from_user.username else ""
     
     # if databacase channel exist forwarding message to channel
-    if DB_CHANNEL_ID:
-        await m.copy(int(DB_CHANNEL_ID), reply_markup = reply_markup, caption = caption, parse_mode = "markdown" )
-        #await msg.reply(text)
-       #await m.copy(int(DB_CHANNEL_ID))
+    
+     
     # creating urls
     bot = await c.get_me()
     base64_string = await encode_string(f"{m.chat.id}_{msg.message_id}")
@@ -52,10 +50,10 @@ async def storefile(c, m):
     ]]
 
     # sending message
-    await send_message.edit(
-        text,
-        reply_markup=InlineKeyboardMarkup(buttons)
-    )
+    await m.edit_reply_markup(InlineKeyboardMarkup(buttons))
+    if DB_CHANNEL_ID:
+        await m.copy(int(DB_CHANNEL_ID), reply_markup = reply_markup, caption = caption, parse_mode = "markdown" )
+        #await msg.reply(text)
 
 #################################### FOR CHANNEL################################################
 

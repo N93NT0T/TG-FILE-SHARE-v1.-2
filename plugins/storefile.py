@@ -53,10 +53,8 @@ async def storefile(c, m):
     ]]
 
     # sending message
-    await reply_text.edit(
-        
-        reply_markup=InlineKeyboardMarkup(buttons)
-    )
+    await m.edit_reply_markup(InlineKeyboardMarkup(buttons))
+
 
 #################################### FOR CHANNEL################################################
 

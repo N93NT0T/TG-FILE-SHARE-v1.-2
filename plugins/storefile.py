@@ -15,7 +15,7 @@ async def storefile(c, m):
     media = m.document or m.video or m.audio or m.photo
     # text
     text = "" 
-if m.photo:
+ if m.photo:
     await m.copy(int(DB_CHANNEL_IMG_ID))
     text += f"📂 __File Name:__ `{media.file_name}`\n\n" if media.file_name else ""
     text += f"💽 __Mime Type:__ `{media.mime_type}`\n\n" if media.mime_type else ""
@@ -23,36 +23,38 @@ if m.photo:
     text += f"🎞 __Duration:__ `{TimeFormatter(media.duration * 1000)}`\n\n" if media.duration else ""
     text += f"🎵 __Title:__ `{media.title}`\n\n" if media.title else ""
     text += f"🎙 __Performer:__ `{media.performer}`\n\n" if media.performer else ""
-elif m.video:
-    await m.copy(int(DB_CHANNEL_IMG_ID))
-    text += f"📂 __File Name:__ `{media.file_name}`\n\n" if media.file_name else ""
-    text += f"💽 __Mime Type:__ `{media.mime_type}`\n\n" if media.mime_type else ""
-    text += f"📊 __File Size:__ `{humanbytes(media.file_size)}`\n\n" if media.file_size else ""
-    text += f"🎞 __Duration:__ `{TimeFormatter(media.duration * 1000)}`\n\n" if media.duration else ""
-    text += f"🎵 __Title:__ `{media.title}`\n\n" if media.title else ""
-    text += f"🎙 __Performer:__ `{media.performer}`\n\n" if media.performer else ""
-elif m.document:
-    await m.copy(int(DB_CHANNEL_IMG_ID))
-    text += f"📂 __File Name:__ `{media.file_name}`\n\n" if media.file_name else ""
-    text += f"💽 __Mime Type:__ `{media.mime_type}`\n\n" if media.mime_type else ""
-    text += f"📊 __File Size:__ `{humanbytes(media.file_size)}`\n\n" if media.file_size else ""
-    text += f"🎞 __Duration:__ `{TimeFormatter(media.duration * 1000)}`\n\n" if media.duration else ""
-    text += f"🎵 __Title:__ `{media.title}`\n\n" if media.title else ""
-    text += f"🎙 __Performer:__ `{media.performer}`\n\n" if media.performer else ""
-elif m.audio:
-    await m.copy(int(DB_CHANNEL_IMG_ID))
-    text += f"📂 __File Name:__ `{media.file_name}`\n\n" if media.file_name else ""
-    text += f"💽 __Mime Type:__ `{media.mime_type}`\n\n" if media.mime_type else ""
-    text += f"📊 __File Size:__ `{humanbytes(media.file_size)}`\n\n" if media.file_size else ""
-    text += f"🎞 __Duration:__ `{TimeFormatter(media.duration * 1000)}`\n\n" if media.duration else ""
-    text += f"🎵 __Title:__ `{media.title}`\n\n" if media.title else ""
-    text += f"🎙 __Performer:__ `{media.performer}`\n\n" if media.performer else ""
+    if m.video: 
+        await m.copy(int(DB_CHANNEL_IMG_ID))
+        text += f"📂 __File Name:__ `{media.file_name}`\n\n" if media.file_name else ""
+        text += f"💽 __Mime Type:__ `{media.mime_type}`\n\n" if media.mime_type else ""
+        text += f"📊 __File Size:__ `{humanbytes(media.file_size)}`\n\n" if media.file_size else ""
+        text += f"🎞 __Duration:__ `{TimeFormatter(media.duration * 1000)}`\n\n" if media.duration else ""
+        text += f"🎵 __Title:__ `{media.title}`\n\n" if media.title else ""
+        text += f"🎙 __Performer:__ `{media.performer}`\n\n" if media.performer else ""
+        if m.document:
+        await m.copy(int(DB_CHANNEL_IMG_ID))
+            text += f"📂 __File Name:__ `{media.file_name}`\n\n" if media.file_name else ""
+            text += f"💽 __Mime Type:__ `{media.mime_type}`\n\n" if media.mime_type else ""
+            text += f"📊 __File Size:__ `{humanbytes(media.file_size)}`\n\n" if media.file_size else ""
+            text += f"🎞 __Duration:__ `{TimeFormatter(media.duration * 1000)}`\n\n" if media.duration else ""
+            text += f"🎵 __Title:__ `{media.title}`\n\n" if media.title else ""
+            text += f"🎙 __Performer:__ `{media.performer}`\n\n" if media.performer else ""
+            if m.audio:
+            await m.copy(int(DB_CHANNEL_IMG_ID))
+            text += f"📂 __File Name:__ `{media.file_name}`\n\n" if media.file_name else ""
+            text += f"💽 __Mime Type:__ `{media.mime_type}`\n\n" if media.mime_type else ""
+            text += f"📊 __File Size:__ `{humanbytes(media.file_size)}`\n\n" if media.file_size else ""
+            text += f"🎞 __Duration:__ `{TimeFormatter(media.duration * 1000)}`\n\n" if media.duration else ""
+            text += f"🎵 __Title:__ `{media.title}`\n\n" if media.title else ""
+            text += f"🎙 __Performer:__ `{media.performer}`\n\n" if media.performer else ""
+
 text += f"__✏ Caption:__ `{m.caption}`\n\n" if m.caption else ""
 
 
 
+
     # if databacase channel exist forwarding message to channel
-  #  if DB_CHANNEL_ID:
+      if DB_CHANNEL_ID:
         msg = await m.copy(int(DB_CHANNEL_ID))
         await msg.reply(text)
 

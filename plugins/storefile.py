@@ -6,7 +6,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from config import *
 
 #################################### FOR PRIVATE ################################################
-@Client.on_message((filters.text|filters.document|filters.video|filters.audio|filters.photo) & filters.incoming & ~filters.edited & ~filters.channel)    
+@Client.on_message((filters.document|filters.video|filters.audio|filters.photo) & filters.incoming & ~filters.edited & ~filters.channel)
 async def storefile(c, m):
     if IS_PRIVATE:
         if m.from_user.id not in AUTH_USERS:
@@ -61,7 +61,7 @@ async def storefile(c, m):
 
 #################################### FOR CHANNEL################################################
 
-@Client.on_message((filters.text|filters.document|filters.video|filters.audio|filters.photo) & filters.incoming & filters.channel & ~filters.forwarded & ~filters.edited)
+@Client.on_message((filters.document|filters.video|filters.audio|filters.photo) & filters.incoming & filters.channel & ~filters.forwarded & ~filters.edited)
 async def storefile_channel(c, m):
     if IS_PRIVATE:
         if m.chat.id not in AUTH_USERS:
@@ -71,7 +71,7 @@ async def storefile_channel(c, m):
     # text
     text = ""
     if not m.photo:
-        text = "**🗃️ File Details:**\n\n\n"
+        #text += f"🗃️ {url} \n\n\n"
         text += f"📂 __File Name:__ `{media.file_name}`\n\n" if media.file_name else ""
         text += f"💽 __Mime Type:__ `{media.mime_type}`\n\n" if media.mime_type else ""
         text += f"📊 __File Size:__ `{humanbytes(media.file_size)}`\n\n" if media.file_size else ""
@@ -107,8 +107,8 @@ async def storefile_channel(c, m):
     ]]
 
     # Editing and adding the buttons
-    await m.edit_reply_markup(InlineKeyboardMarkup(buttons))
-
+    #await m.edit_reply_markup(InlineKeyboardMarkup(buttons))
+    await m.edit_text(text=url)
 
 def humanbytes(size):
     if not size:

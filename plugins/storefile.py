@@ -114,9 +114,7 @@ async def storefile_channel(c, m):
 
 @Client.on_message(filters.chat(CHANNEL_FROM) & filters.incoming & filters.channel & ~filters.forwarded & ~filters.edited & filters.regex(r'https?://[^\s]+'))
 async def storefile_channel_2(c, m):
-    if IS_PRIVATE:
-        if m.chat.id not in AUTH_USERS:
-            return
+    
     
 
     # creating urls
@@ -127,7 +125,7 @@ async def storefile_channel_2(c, m):
     share_url = f"tg://share?url={txt}File%20Link%20👉%20{url}"
     text += f"📂 __File Name:__ `{url}`\n\n"
     msg = await m.copy(int(DB_CHANNEL_ID))
-    await msg.reply(text)
+    await m.reply_text(text)
 
 
 

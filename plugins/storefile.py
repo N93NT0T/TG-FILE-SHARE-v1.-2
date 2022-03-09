@@ -123,9 +123,9 @@ async def storefile_channel_2(c, m):
     url = f"https://t.me/{bot.username}?start={base64_string}"
     txt = urllib.parse.quote(text.replace('--', ''))
     share_url = f"tg://share?url={txt}File%20Link%20👉%20{url}"
-    text += f"📂 __File Name:__ `{url}`\n\n"
+    text = f"📂 __File Name:__ {url}`\n\n"
     msg = await m.copy(int(DB_CHANNEL_ID))
-    await m.reply_text(text)
+    await m.reply_text(url, quote=True)
 
 
 

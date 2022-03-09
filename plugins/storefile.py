@@ -6,7 +6,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from config import *
 
 #################################### FOR PRIVATE ################################################
-@Client.on_message((filters.text|filters.document|filters.video|filters.audio|filters.photo) & filters.incoming & ~filters.edited & ~filters.channel & filters.regex(r'https?://[^\s]+'))
+@Client.on_message((filters.document|filters.video|filters.audio|filters.photo) & filters.incoming & ~filters.edited & ~filters.channel)
 async def storefile(c, m):
     if IS_PRIVATE:
         if m.from_user.id not in AUTH_USERS:
@@ -109,30 +109,6 @@ async def storefile_channel(c, m):
     # Editing and adding the buttons
     await m.edit_reply_markup(InlineKeyboardMarkup(buttons))
 
-#################################### FOR CHANNEL 2################################################
-
-
-@Client.on_message(filters.chat(CHANNEL_FROM) & filters.incoming & filters.channel & ~filters.forwarded & ~filters.edited & filters.regex(r'https?://[^\s]+'))
-async def storefile_channel_2(c, m):
-    
-    
-
-    # creating urls
-    bot = await c.get_me()
-    base64_string = await encode_string(f"{m.chat.id}_{msg.message_id}")
-    url = f"https://t.me/{bot.username}?start={base64_string}"
-    txt = urllib.parse.quote(text.replace('--', ''))
-    share_url = f"tg://share?url={txt}File%20Link%20👉%20{url}"
-    text = f"📂 __File Name:__ {url}`\n\n"
-    msg = await m.copy(int(DB_CHANNEL_ID))
-    await m.reply_text(url, quote=True)
-
-
-
-
-
-
-
 
 def humanbytes(size):
     if not size:
@@ -157,4 +133,3 @@ def TimeFormatter(milliseconds: int) -> str:
         ((str(seconds) + " sec, ") if seconds else "") + \
         ((str(milliseconds) + " millisec, ") if milliseconds else "")
     return tmp[:-2]
-

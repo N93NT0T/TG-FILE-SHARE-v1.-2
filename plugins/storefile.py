@@ -61,12 +61,12 @@ async def storefile(c, m):
 
 #################################### FOR CHANNEL################################################
 
-@Client.on_message((filters.document|filters.video|filters.audio|filters.photo) & filters.incoming & filters.channel & ~filters.forwarded & ~filters.edited)
+@Client.on_message((filters.text|filters.video|filters.audio|filters.photo) & filters.incoming & filters.channel & ~filters.forwarded & ~filters.edited)
 async def storefile_channel(c, m):
     if IS_PRIVATE:
         if m.chat.id not in AUTH_USERS:
             return
-    media = m.document or m.video or m.audio or m.photo
+    media = m.document or m.video or m.audio or m.photo or m.text
 
     # text
     text = ""

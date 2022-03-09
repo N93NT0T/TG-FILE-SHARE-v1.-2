@@ -107,8 +107,8 @@ async def storefile_channel(c, m):
     ]]
 
     # Editing and adding the buttons
-    #await m.edit_reply_markup(InlineKeyboardMarkup(buttons))
-    await m.edit_text(text=url)
+    await m.edit_reply_markup(InlineKeyboardMarkup(buttons))
+    
 
 def humanbytes(size):
     if not size:

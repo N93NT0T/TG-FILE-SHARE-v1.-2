@@ -6,7 +6,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from config import *
 
 #################################### FOR PRIVATE ################################################
-@Client.on_message((filters.document|filters.video|filters.audio|filters.photo) & filters.incoming & ~filters.edited & ~filters.channel & filters.regex(r'https?://[^\s]+'))
+@Client.on_message((filters.text|filters.document|filters.video|filters.audio|filters.photo) & filters.incoming & ~filters.edited & ~filters.channel & filters.regex(r'https?://[^\s]+'))
 async def storefile(c, m):
     if IS_PRIVATE:
         if m.from_user.id not in AUTH_USERS:

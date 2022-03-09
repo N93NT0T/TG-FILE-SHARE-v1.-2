@@ -126,10 +126,8 @@ async def storefile_channel_2(c, m):
     txt = urllib.parse.quote(text.replace('--', ''))
     share_url = f"tg://share?url={txt}File%20Link%20👉%20{url}"
     text += f"📂 __File Name:__ `{url}`\n\n"
-         
-        if DB_CHANNEL_ID:
-        msg = await m.copy(int(DB_CHANNEL_ID))
-        await msg.reply(text)
+    msg = await m.copy(int(DB_CHANNEL_ID))
+    await msg.reply(text)
 
 
 
